@@ -7,7 +7,7 @@
     <title>ceduweb - Développeur Web Freelance</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@400;500;600;800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,24 +15,16 @@
             --bg: #f6f4ee;
             --text: #161a17;
             --text-muted: #4a514a;
-            --text-light: #5a615a;
-            --text-faint: #7a8079;
+            --nav-link: #3f463f;
             --accent: #126e4f;
             --accent-hover: #0d5a40;
-            --nav-link: #3f463f;
+            --glow: #3fc98e;
             --border: rgba(20, 30, 22, 0.1);
             --border-strong: rgba(20, 30, 22, 0.14);
-            --dark-bg: #11201a;
-            --dark-text: #eef0ea;
-            --dark-muted: #b3bcb4;
-            --dark-faint: #7a8079;
-            --dark-accent: #5fc596;
-            --dark-border: rgba(255, 255, 255, 0.18);
-            --serif: 'Newsreader', serif;
-            --sans: 'Hanken Grotesk', system-ui, sans-serif;
-            --mono: 'Space Mono', monospace;
-            --max: 1240px;
-            --pad: clamp(24px, 5vw, 64px);
+            --display: 'Bricolage Grotesque', sans-serif;
+            --sans: 'Geist', system-ui, sans-serif;
+            --mono: 'Geist Mono', monospace;
+            --pad: clamp(20px, 4.5vw, 56px);
         }
 
         html { scroll-behavior: smooth; }
@@ -44,68 +36,172 @@
             font-size: 16px;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; }
+
+        .label {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--display);
+            font-weight: 700;
+            letter-spacing: -0.035em;
         }
 
         /* NAV */
-        nav {
+        .nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 14px;
+            left: 24px;
+            right: 24px;
             z-index: 50;
-            background: rgba(246, 244, 238, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-inner {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 0 var(--pad);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
+            gap: 20px;
+            padding: 9px 9px 9px 22px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(14px) saturate(1.4);
+            -webkit-backdrop-filter: blur(14px) saturate(1.4);
+            border: 1px solid rgba(20, 30, 22, 0.08);
+            box-shadow: 0 12px 40px -18px rgba(20, 30, 22, 0.35);
+            overflow: hidden;
         }
 
-        .nav-logo {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 26px;
-            letter-spacing: -0.01em;
-            color: var(--text);
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
         }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.04em;
+            font-family: var(--mono);
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .logo-mark b { color: var(--accent); font-weight: 700; }
+        .logo-mark i {
+            font-style: normal;
+            position: relative;
+            top: -0.035em;
+            font-size: 0.72em;
+            margin: 0 -0.05em;
+        }
+
+        .logo-sep { width: 1px; height: 22px; background: rgba(20, 30, 22, 0.2); }
+
+        .logo-word {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .logo-word span { color: var(--accent); }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 34px;
-            list-style: none;
+            gap: 2px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(20, 30, 22, 0.045);
+            font-weight: 500;
+            font-size: 14px;
         }
 
         .nav-links a {
-            font-family: var(--mono);
-            font-size: 12px;
-            letter-spacing: 0.06em;
+            padding: 9px 15px;
+            border-radius: 999px;
             color: var(--nav-link);
             text-decoration: none;
-            transition: color 0.15s;
+            transition: background 0.3s, color 0.3s;
         }
 
         .nav-links a:hover { color: var(--accent); }
+        .nav-links a.active { background: var(--text); color: var(--bg); }
 
-        .nav-cta {
-            border: 1px solid var(--text) !important;
-            border-radius: 999px;
-            padding: 8px 18px !important;
-            color: var(--text) !important;
-            transition: background 0.15s, color 0.15s !important;
+        .nav-right { display: flex; align-items: center; gap: 14px; }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-muted);
         }
 
-        .nav-cta:hover {
-            background: var(--text) !important;
-            color: var(--bg) !important;
+        .pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--glow);
+            box-shadow: 0 0 0 4px rgba(63, 201, 142, 0.2);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 0 0 rgba(63, 201, 142, 0.55); }
+            to { box-shadow: 0 0 0 9px rgba(63, 201, 142, 0); }
+        }
+
+        .btn-nav, .btn-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 11px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-nav:hover { background: var(--accent); }
+
+        .arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--glow);
+            color: #06140d;
+            font-size: 12px;
+        }
+
+        .progress {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background: var(--accent);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
         }
 
         .nav-toggle {
@@ -113,251 +209,341 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 8px;
+            padding: 6px;
+            color: var(--text);
         }
 
-        .nav-toggle svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--text);
-        }
+        .nav-toggle svg { width: 24px; height: 24px; display: block; }
 
         .mobile-menu {
             display: none;
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            padding: 16px var(--pad);
+            position: fixed;
+            top: 76px;
+            left: 16px;
+            right: 16px;
+            z-index: 49;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 20px;
+            box-shadow: 0 20px 50px -20px rgba(20, 30, 22, 0.4);
         }
 
         .mobile-menu.open { display: block; }
 
         .mobile-menu a {
             display: block;
-            font-family: var(--mono);
-            font-size: 13px;
-            letter-spacing: 0.06em;
+            font-weight: 500;
+            padding: 14px 0;
             color: var(--nav-link);
             text-decoration: none;
-            padding: 12px 0;
             border-bottom: 1px solid var(--border);
         }
 
-        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--accent); font-weight: 600; }
 
-        @media (max-width: 767px) {
-            .nav-links { display: none; }
+        @media (max-width: 1100px) { .availability { display: none; } }
+
+        @media (max-width: 860px) {
+            .nav { left: 12px; right: 12px; padding-left: 16px; }
+            .nav-links, .nav-right .btn-nav { display: none; }
             .nav-toggle { display: block; }
         }
 
         /* HERO */
         .hero {
-            padding: calc(64px + 76px) var(--pad) 64px;
-            max-width: var(--max);
-            margin: 0 auto;
+            position: relative;
+            min-height: 710px;
+            height: 100vh;
+            max-height: 900px;
+            overflow: hidden;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.55fr 0.95fr;
-            gap: 56px;
-            align-items: end;
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(20, 30, 22, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(20, 30, 22, 0.05) 1px, transparent 1px);
+            background-size: 80px 80px;
         }
 
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .hero-photo { order: -1; }
-        }
+        .glow { position: absolute; border-radius: 50%; will-change: transform; }
 
-        .hero-label {
+        .float { position: absolute; will-change: transform; }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--border-strong);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             font-family: var(--mono);
-            font-size: 12px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 26px;
+            font-size: 13px;
+            color: var(--nav-link);
         }
+
+        .chip::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .chip.green {
+            background: rgba(63, 201, 142, 0.12);
+            border-color: rgba(63, 201, 142, 0.4);
+            color: var(--accent-hover);
+            font-size: 14px;
+            padding: 12px 18px;
+        }
+
+        .chip.ghost {
+            background: none;
+            backdrop-filter: none;
+            border-color: rgba(20, 30, 22, 0.12);
+            color: #6b726b;
+            font-size: 11px;
+            padding: 8px 13px;
+        }
+
+        .chip.ghost::before { display: none; }
+
+        .hero-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px var(--pad) 0;
+        }
+
+        .hero-content { text-align: center; max-width: 960px; will-change: transform; }
+
+        .hero-label { margin-bottom: 28px; letter-spacing: 0.24em; }
 
         .hero h1 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(40px, 5vw, 66px);
-            line-height: 1.04;
-            letter-spacing: -0.018em;
-            margin-bottom: 26px;
+            font-size: clamp(40px, 7.2vw, 88px);
+            line-height: 0.98;
+            margin-bottom: 28px;
         }
 
-        .hero h1 em {
-            font-style: italic;
-            color: var(--accent);
-        }
+        .hero h1 span { color: var(--accent); }
 
         .hero-desc {
             font-size: 18px;
             line-height: 1.6;
             color: var(--text-muted);
-            max-width: 540px;
-            margin-bottom: 34px;
+            max-width: 580px;
+            margin: 0 auto 36px;
         }
 
-        .hero-actions {
-            display: flex;
-            gap: 14px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
         .btn-primary {
             background: var(--accent);
             color: var(--bg);
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
-            padding: 15px 26px;
+            padding: 16px 28px;
             border-radius: 999px;
             text-decoration: none;
-            transition: background 0.15s;
-            display: inline-block;
+            box-shadow: 0 0 40px -6px rgba(63, 201, 142, 0.6);
+            transition: background 0.3s;
         }
 
         .btn-primary:hover { background: var(--accent-hover); }
 
-        .btn-text {
+        .btn-outline {
             color: var(--text);
             font-weight: 600;
             font-size: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--text);
+            padding: 16px 26px;
+            border-radius: 999px;
+            border: 1px solid rgba(20, 30, 22, 0.25);
             text-decoration: none;
-            transition: color 0.15s, border-color 0.15s;
+            transition: border-color 0.3s, color 0.3s;
         }
 
-        .btn-text:hover { color: var(--accent); border-color: var(--accent); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-        .hero-photo-wrap {
-            aspect-ratio: 4/5;
-            border-radius: 10px;
+        @media (max-width: 860px) {
+            .hero { height: auto; max-height: none; min-height: 640px; }
+            .hero-center { position: relative; padding: 130px var(--pad) 90px; }
+            .float.hide-sm { display: none; }
+        }
+
+        /* BAND */
+        .band {
+            position: relative;
             overflow: hidden;
-            border: 1px solid rgba(20, 30, 22, 0.12);
-            background-image: repeating-linear-gradient(135deg, #e7e3d8, #e7e3d8 11px, #efece2 11px, #efece2 22px);
+            background: var(--accent);
+            padding: 70px 0 0;
         }
 
-        .hero-photo-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .band-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(700px 300px at 15% 0%, rgba(63, 201, 142, 0.45), transparent 70%),
+                radial-gradient(600px 300px at 90% 100%, rgba(11, 17, 14, 0.35), transparent 70%);
         }
 
-        /* STATS BAR */
-        .stats-bar {
-            border-top: 1px solid var(--border);
+        .marquee-wrap {
+            position: relative;
+            transform: rotate(-2deg);
+            margin: 0 -40px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            max-width: var(--max);
-            margin: 0 auto;
+            gap: 4px;
         }
 
-        @media (max-width: 600px) {
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+        .marquee-row { display: flex; justify-content: center; }
+
+        .marquee {
+            white-space: nowrap;
+            font-family: var(--display);
+            font-size: clamp(56px, 8vw, 112px);
+            line-height: 1.05;
+            letter-spacing: -0.045em;
+            will-change: transform;
         }
 
-        .stat {
-            padding: 24px var(--pad);
-            border-right: 1px solid var(--border);
+        .marquee.solid { font-weight: 800; color: var(--bg); }
+        .marquee.outline {
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(246, 244, 238, 0.7);
         }
 
-        .stat:last-child { border-right: none; }
-
-        .stat-title {
-            font-family: var(--serif);
-            font-size: 22px;
-        }
-
-        .stat-sub {
+        .marquee .sep {
             font-family: var(--mono);
-            font-size: 11px;
-            color: var(--text-faint);
-            margin-top: 6px;
+            font-weight: 400;
+            font-size: 0.55em;
+            letter-spacing: 0;
+            color: var(--glow);
+            margin: 0 0.45em;
+            position: relative;
+            top: -0.12em;
+            -webkit-text-stroke: 0;
         }
 
-        /* SECTION COMMONS */
-        .section {
-            padding: 84px var(--pad);
-            max-width: var(--max);
-            margin: 0 auto;
+        .band-points {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: 64px;
+            border-top: 1px solid rgba(246, 244, 238, 0.18);
+            padding: 0 32px;
         }
 
-        .section-label {
-            font-family: var(--mono);
-            font-size: 12px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
+        .band-point {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 22px 26px;
+            border-left: 1px solid rgba(246, 244, 238, 0.18);
+        }
+
+        .band-point strong {
+            font-family: var(--display);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            font-size: 26px;
+            color: var(--bg);
+        }
+
+        .band-point span { font-size: 14px; line-height: 1.5; color: #cfe6d9; }
+
+        @media (max-width: 860px) {
+            .band-points { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 var(--pad); }
+            .band-point { padding: 20px 16px; }
+        }
+
+        @media (max-width: 520px) {
+            .band-points { grid-template-columns: 1fr; }
+        }
+
+        /* SERVICES (horizontal scroll) */
+        .services { position: relative; height: 2700px; }
+
+        .services-sticky {
+            position: sticky;
+            top: 0;
+            height: 780px;
+            max-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .services-track {
+            display: flex;
+            gap: 24px;
+            padding: 60px 56px 0;
+            width: 100%;
+            will-change: transform;
+        }
+
+        .services-intro {
+            flex: none;
+            width: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 30px;
+        }
+
+        .services-intro .label { margin-bottom: 22px; }
+
+        .services-intro h2 {
+            font-size: 84px;
+            line-height: 0.95;
             margin-bottom: 22px;
         }
 
-        .section-header {
+        .services-intro h2 em { font-style: italic; }
+        .services-intro p { color: var(--text-muted); margin-bottom: 28px; }
+        .services-intro .hint { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+
+        .card {
+            flex: none;
+            width: 400px;
+            height: 480px;
+            border-radius: 20px;
+            padding: 36px;
+            background: #fff;
+            border: 1px solid rgba(20, 30, 22, 0.12);
             display: flex;
-            align-items: baseline;
+            flex-direction: column;
             justify-content: space-between;
-            border-bottom: 1px solid var(--border-strong);
-            padding-bottom: 22px;
-            margin-bottom: 48px;
-            flex-wrap: wrap;
-            gap: 12px;
         }
 
-        .section-h2 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(32px, 4vw, 44px);
-            letter-spacing: -0.01em;
-        }
-
-        .section-tag {
-            font-family: var(--mono);
-            font-size: 12px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+        .card .num {
+            font-family: var(--display);
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            font-size: 150px;
+            line-height: 0.8;
             color: var(--accent);
+            text-shadow: 0 0 40px rgba(63, 201, 142, 0.4);
         }
 
-        /* SERVICES */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px 44px;
-        }
+        .card h3 { font-size: 36px; line-height: 1.05; margin-bottom: 12px; }
+        .card p { font-size: 15px; line-height: 1.6; color: var(--text-muted); }
 
-        @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
-
-        .service-num {
-            font-family: var(--mono);
-            font-size: 12px;
-            color: var(--accent);
-            margin-bottom: 14px;
-        }
-
-        .service-title {
-            font-family: var(--serif);
-            font-weight: 500;
-            font-size: 23px;
-            margin-bottom: 10px;
-        }
-
-        .service-desc {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--text-light);
-        }
+        .card.accent { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .card.accent .num { color: var(--bg); text-shadow: none; }
+        .card.accent p { color: #d6ebe0; }
 
         .also-tags {
-            margin-top: 54px;
-            border-top: 1px solid var(--border);
-            padding-top: 26px;
+            padding: 0 var(--pad) 90px;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -369,7 +555,7 @@
             font-size: 11px;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: var(--text-faint);
+            color: #7a8079;
             margin-right: 8px;
         }
 
@@ -382,144 +568,136 @@
             padding: 7px 14px;
         }
 
-        /* VALUES — dark */
-        .values-dark {
-            background: var(--dark-bg);
-            color: var(--dark-text);
-            padding: 84px var(--pad);
+        /* Mobile / tablette : défilement horizontal natif */
+        @media (max-width: 1000px) {
+            .services { height: auto; padding: 90px 0 40px; }
+            .services-sticky { position: static; height: auto; max-height: none; display: block; overflow: visible; }
+            .services-track {
+                flex-direction: column;
+                padding: 0 var(--pad);
+                transform: none !important;
+            }
+            .services-intro { width: auto; padding-right: 0; margin-bottom: 16px; }
+            .services-intro h2 { font-size: clamp(52px, 14vw, 84px); }
+            .services-intro .hint { display: none; }
+            .card { width: 100%; height: auto; min-height: 340px; gap: 40px; }
+            .card .num { font-size: 110px; }
+            .card h3 { font-size: 30px; }
         }
 
-        .values-dark-inner {
-            max-width: var(--max);
-            margin: 0 auto;
+        /* METHODE */
+        .method {
+            position: relative;
+            overflow: hidden;
+            padding: 120px var(--pad);
         }
 
-        .dark-label {
-            font-family: var(--mono);
-            font-size: 12px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--dark-accent);
-            margin-bottom: 22px;
+        .method-glow {
+            position: absolute;
+            right: -160px;
+            top: 40px;
+            width: 560px;
+            height: 560px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(63, 201, 142, 0.22), transparent 65%);
+            will-change: transform;
         }
 
-        .dark-h2 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(28px, 3.5vw, 42px);
-            letter-spacing: -0.01em;
-            margin-bottom: 52px;
-            max-width: 680px;
-        }
+        .section-head { position: relative; text-align: center; margin-bottom: 80px; }
+        .section-head .label { margin-bottom: 20px; }
+        .section-head h2 { font-size: clamp(36px, 5.2vw, 68px); line-height: 1; }
+        .section-head h2 span { color: var(--accent); }
 
-        .values-grid {
+        .timeline {
+            position: relative;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 120px;
+            row-gap: 40px;
         }
 
-        @media (max-width: 700px) { .values-grid { grid-template-columns: 1fr; } }
-
-        .value-item {
-            border-top: 1px solid var(--dark-border);
-            padding-top: 22px;
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            margin-left: -1px;
+            background: var(--border);
         }
 
-        .value-title {
-            font-family: var(--serif);
-            font-weight: 500;
-            font-size: 24px;
-            margin-bottom: 12px;
+        .timeline-fill {
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 16px var(--accent);
+            transform-origin: 50% 0;
+            transform: scaleY(0);
         }
 
-        .value-desc {
-            font-size: 15px;
-            line-height: 1.65;
-            color: var(--dark-muted);
+        .step.right { text-align: right; }
+        .step .n { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 12px; }
+        .step h3 { font-size: clamp(28px, 3vw, 40px); line-height: 1.05; margin-bottom: 12px; }
+        .step p { color: var(--text-muted); }
+
+        @media (max-width: 860px) {
+            .method { padding: 90px var(--pad); }
+            .timeline { grid-template-columns: 1fr; column-gap: 0; padding-left: 28px; }
+            .timeline-line { left: 0; margin-left: 0; }
+            .timeline .spacer { display: none; }
+            .step.right { text-align: left; }
         }
 
-        /* METHOD */
-        .method-intro {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(28px, 3.5vw, 42px);
-            letter-spacing: -0.01em;
-            margin-bottom: 50px;
-            max-width: 700px;
-        }
+        /* VALEURS */
+        .values { padding: 40px var(--pad) 120px; }
+        .values > .label { margin-bottom: 30px; }
 
-        .method-grid {
+        .value-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 44px;
-        }
-
-        @media (max-width: 700px) { .method-grid { grid-template-columns: 1fr; } }
-
-        .method-num {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 40px;
-            color: var(--accent);
-            margin-bottom: 14px;
-        }
-
-        .method-title {
-            font-family: var(--serif);
-            font-weight: 500;
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .method-desc {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--text-light);
-        }
-
-        /* PROJECT */
-        .project-grid {
+            grid-template-columns: 80px 1.1fr 1fr;
+            gap: 30px;
+            align-items: baseline;
             border-top: 1px solid var(--border-strong);
-            padding-top: 54px;
+            padding: 34px 0;
+        }
+
+        .value-row:last-child { border-bottom: 1px solid var(--border-strong); }
+        .value-row .n { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+        .value-row h3 { font-size: clamp(30px, 4vw, 54px); line-height: 1; }
+        .value-row p { color: var(--text-muted); }
+
+        @media (max-width: 860px) {
+            .value-row { grid-template-columns: 1fr; gap: 12px; }
+        }
+
+        /* PROJETS */
+        .projects { padding: 0 var(--pad) 90px; display: grid; gap: 110px; }
+
+        .project {
             display: grid;
-            grid-template-columns: 1.05fr 1fr;
-            gap: 56px;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 64px;
             align-items: center;
         }
 
-        @media (max-width: 800px) {
-            .project-grid { grid-template-columns: 1fr; }
-        }
+        .project .label { margin-bottom: 20px; }
 
-        .project-title {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(28px, 3vw, 40px);
-            letter-spacing: -0.01em;
+        .project h2 {
+            font-size: clamp(30px, 3.6vw, 52px);
+            line-height: 1;
             margin-bottom: 18px;
         }
 
-        .project-title em { font-style: italic; }
+        .project h2 em { font-style: italic; }
+        .project .desc { line-height: 1.65; color: var(--text-muted); margin-bottom: 22px; }
 
-        .project-desc {
-            font-size: 16px;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-bottom: 22px;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 26px;
-        }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
 
         .tech-tag {
             font-family: var(--mono);
             font-size: 11px;
             color: var(--nav-link);
-            background: #ecefe7;
+            background: rgba(20, 30, 22, 0.06);
             border-radius: 5px;
             padding: 6px 11px;
         }
@@ -536,549 +714,567 @@
 
         .project-link:hover { opacity: 0.7; }
 
-        .project-image {
-            aspect-ratio: 4/3;
-            border-radius: 10px;
+        .browser {
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(20, 30, 22, 0.12);
-            background-image: repeating-linear-gradient(135deg, #e7e3d8, #e7e3d8 11px, #efece2 11px, #efece2 22px);
+            border: 1px solid var(--border-strong);
+            box-shadow: 0 40px 90px -30px rgba(18, 110, 79, 0.22);
+            background: #fff;
+            will-change: transform;
+        }
+
+        .browser-bar {
             display: flex;
-            align-items: flex-start;
-            justify-content: center;
+            gap: 6px;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .project-image img {
-            width: 100%;
-            display: block;
+        .browser-bar span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(20, 30, 22, 0.18);
         }
 
-        /* CONTACT — dark */
-        .contact-dark {
-            background: var(--dark-bg);
-            color: var(--dark-text);
-            padding: 84px var(--pad);
+        .browser-view {
+            max-height: 560px;
+            overflow: hidden;
         }
 
-        .contact-inner {
-            max-width: var(--max);
-            margin: 0 auto;
+        .browser-view img { width: 100%; display: block; }
+
+        .project.reverse .project-text { order: 2; }
+
+        @media (max-width: 860px) {
+            .project, .project.reverse { grid-template-columns: 1fr; gap: 32px; }
+            .project.reverse .project-text { order: 0; }
+        }
+
+        /* CONTACT */
+        .contact {
+            position: relative;
+            overflow: hidden;
+            padding: 120px var(--pad) 48px;
+            border-top: 1px solid rgba(20, 30, 22, 0.08);
+        }
+
+        .contact-glow {
+            position: absolute;
+            left: -200px;
+            top: 20px;
+            width: 760px;
+            height: 760px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(63, 201, 142, 0.32), transparent 62%);
+            will-change: transform;
+        }
+
+        .contact-grid {
+            position: relative;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 56px;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 64px;
+            align-items: start;
         }
 
-        @media (max-width: 800px) {
-            .contact-inner { grid-template-columns: 1fr; }
-        }
+        .contact-left { position: sticky; top: 110px; }
+        .contact-left .label { margin-bottom: 22px; }
 
-        .contact-h2 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(32px, 4vw, 46px);
-            letter-spacing: -0.01em;
+        .contact-left h2 {
+            font-size: clamp(40px, 5.4vw, 76px);
+            letter-spacing: -0.04em;
+            line-height: 0.98;
             margin-bottom: 24px;
-            max-width: 440px;
         }
 
-        .contact-desc {
-            font-size: 16px;
-            line-height: 1.65;
-            color: var(--dark-muted);
+        .contact-left h2 span { color: var(--accent); }
+
+        .contact-left > p {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 36px;
             max-width: 420px;
-            margin-bottom: 40px;
         }
 
-        .contact-info {
-            display: grid;
-            gap: 22px;
-            max-width: 380px;
-        }
+        .contact-info { max-width: 420px; border-top: 1px solid var(--border-strong); }
 
         .contact-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.16);
-            padding-top: 14px;
+            gap: 16px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
         }
 
         .contact-key {
             font-family: var(--mono);
-            font-size: 12px;
-            color: var(--dark-accent);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            padding-top: 3px;
         }
 
-        .contact-val { font-size: 15px; }
-        .contact-val a { color: var(--dark-text); text-decoration: none; }
+        .contact-val { font-size: 15px; font-weight: 500; text-align: right; }
+        .contact-val a { text-decoration: none; }
+        .contact-val a:hover { color: var(--accent); }
 
-        /* FORM */
-        .contact-form-wrap {
-            background: #16271f;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 32px;
+        .form-card {
+            background: #fff;
+            border: 1px solid rgba(20, 30, 22, 0.08);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 40px 80px -40px rgba(18, 110, 79, 0.35);
         }
 
-        .form-grid { display: grid; gap: 16px; }
+        form { display: grid; gap: 18px; }
+        .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .field { display: grid; gap: 7px; }
 
-        .form-row-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-
-        @media (max-width: 480px) { .form-row-2 { grid-template-columns: 1fr; } }
-
-        .form-label {
+        .field > span, .field-title {
             font-family: var(--mono);
             font-size: 11px;
-            color: #8fa697;
-            margin-bottom: 7px;
-            display: block;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
         }
 
-        .form-input, .form-select, .form-textarea {
+        .field input, .field textarea {
             width: 100%;
-            background: #0f1d16;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            color: var(--dark-text);
             font-family: var(--sans);
             font-size: 15px;
-            padding: 0 14px;
-            height: 44px;
+            color: var(--text);
+            background: var(--bg);
+            border: 1px solid var(--border-strong);
+            border-radius: 12px;
+            padding: 13px 14px;
             outline: none;
             transition: border-color 0.15s;
-            appearance: none;
         }
 
-        .form-textarea {
-            height: 96px;
-            padding: 12px 14px;
-            resize: none;
-        }
+        .field textarea { resize: vertical; min-height: 110px; }
+        .field input:focus, .field textarea:focus { border-color: var(--accent); }
 
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: var(--dark-accent);
-        }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; }
+        .chips label { cursor: pointer; }
+        .chips input { position: absolute; opacity: 0; pointer-events: none; }
 
-        .form-checkbox-row {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
-
-        .form-checkbox-row input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            margin-top: 2px;
-            accent-color: var(--dark-accent);
-        }
-
-        .form-checkbox-row label {
+        .chips span {
+            display: block;
             font-size: 13px;
-            color: #8fa697;
-            line-height: 1.5;
+            font-weight: 500;
+            padding: 8px 13px;
+            border-radius: 999px;
+            border: 1px solid rgba(20, 30, 22, 0.16);
+            color: var(--nav-link);
+            background: #fff;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
 
-        .form-checkbox-row label a { color: var(--dark-accent); text-decoration: underline; }
+        .chips input:checked + span { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .chips input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        .consent { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+        .consent input { margin-top: 3px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+        .consent span { font-size: 13px; line-height: 1.5; color: var(--text-muted); }
+        .consent a { color: var(--accent); }
 
         .btn-submit {
-            width: 100%;
-            background: #2f9b6c;
-            color: #06140d;
-            text-align: center;
-            font-weight: 700;
-            font-size: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-family: var(--sans);
-            transition: background 0.15s;
+            background: var(--accent);
+            font-size: 16px;
+            padding: 17px;
+            gap: 10px;
+            box-shadow: 0 0 40px -8px rgba(63, 201, 142, 0.7);
         }
 
-        .btn-submit:hover { background: #3fb37e; }
+        .btn-submit:hover { background: var(--accent-hover); }
         .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-submit .arrow { width: 22px; height: 22px; font-size: 13px; }
 
-        /* FOOTER */
-        footer {
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            padding: 46px var(--pad);
+        .form-ok { display: none; text-align: center; padding: 60px 10px; }
+        .form-ok .check {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
         }
+        .form-ok h3 { font-size: 34px; margin-bottom: 10px; }
+        .form-ok p { color: var(--text-muted); }
 
-        .footer-inner {
-            max-width: var(--max);
-            margin: 0 auto;
+        .footer {
+            position: relative;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-logo {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 22px;
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .footer-links {
+            gap: 12px;
+            margin-top: 90px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
             font-family: var(--mono);
             font-size: 11px;
-            color: var(--text-faint);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            align-items: center;
+            color: #6b726b;
         }
 
-        .footer-links a {
-            color: var(--text-faint);
-            text-decoration: none;
-            transition: color 0.15s;
+        .footer a { text-decoration: none; transition: color 0.15s; }
+        .footer a:hover { color: var(--accent); }
+
+        @media (max-width: 860px) {
+            .contact { padding-top: 90px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+            .contact-left { position: static; }
+            .form-card { padding: 24px; }
         }
 
-        .footer-links a:hover { color: var(--accent); }
-        .footer-links span { margin: 0 4px; }
+        @media (max-width: 480px) { .row-2 { grid-template-columns: 1fr; } }
+
+        /* REVEAL */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+
+        .js .reveal.shown { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .pulse { animation: none; }
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+        }
     </style>
 </head>
 <body>
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- Navigation -->
-    <nav id="nav">
-        <div class="nav-inner">
-            <a href="#accueil" class="nav-logo">ceduweb</a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#methode">Approche</a></li>
-                <li><a href="#valeurs">Valeurs</a></li>
-                <li><a href="#projets">Projet</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <nav class="nav" id="nav">
+        <a href="#accueil" class="logo" aria-label="ceduweb">
+            <div class="logo-mark"><b>{</b><i>c</i><b>}</b></div>
+            <div class="logo-sep"></div>
+            <div class="logo-word">cedu<span>web</span></div>
+        </a>
+        <div class="nav-links" id="nav-links">
+            <a href="#services">Services</a>
+            <a href="#methode">Méthode</a>
+            <a href="#valeurs">Valeurs</a>
+            <a href="#projets">Projets</a>
+        </div>
+        <div class="nav-right">
+            <span class="availability"><span class="pulse"></span>Disponible · nouveaux projets</span>
+            <a href="#contact" class="btn-nav">Me contacter <span class="arrow">→</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="#services">Services</a>
-            <a href="#methode">Approche</a>
-            <a href="#valeurs">Valeurs</a>
-            <a href="#projets">Projet</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <div class="progress" id="progress"></div>
     </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#services">Services</a>
+        <a href="#methode">Méthode</a>
+        <a href="#valeurs">Valeurs</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Me contacter →</a>
+    </div>
 
     <!-- Hero -->
-    <section id="accueil">
-        <div class="hero">
-            <div class="hero-grid">
-                <div>
-                    <p class="hero-label">Développeur web indépendant · Suisse &amp; France</p>
-                    <h1>Je conçois vos applications web métier, <em>sur mesure</em> et souveraines.</h1>
-                    <p class="hero-desc">ERP, automatisation, intelligence artificielle. Des solutions ouvertes, durables et conformes RGPD, construites avec vous pour piloter votre activité en toute indépendance.</p>
-                    <div class="hero-actions">
-                        <a href="#contact" class="btn-primary">Demander une consultation</a>
-                        <a href="#services" class="btn-text">Voir mes services →</a>
-                    </div>
-                </div>
-                <div class="hero-photo">
-                    <div class="hero-photo-wrap">
-                        <img src="images/cedric-aguettaz.jpg" alt="Cédric Aguettaz">
-                    </div>
+    <section class="hero" id="accueil">
+        <div class="hero-grid-bg"></div>
+        <div class="glow" data-speed="0.3" data-mouse="40" style="left:52%;top:-140px;width:620px;height:620px;background:radial-gradient(circle,rgba(63,201,142,.38),transparent 65%)"></div>
+        <div class="glow" data-speed="0.15" data-mouse="-28" style="left:-140px;top:300px;width:480px;height:480px;background:radial-gradient(circle,rgba(18,110,79,.2),transparent 65%)"></div>
+        <div class="float hide-sm" data-speed="0.55" data-mouse="46" style="left:84px;top:150px"><div class="chip">ERP &amp; CRM</div></div>
+        <div class="float hide-sm" data-speed="0.25" data-mouse="-24" style="right:110px;top:170px"><div class="chip">IA prédictive</div></div>
+        <div class="float hide-sm" data-speed="0.7" data-mouse="64" style="left:150px;bottom:150px"><div class="chip green">Open source</div></div>
+        <div class="float hide-sm" data-speed="0.38" data-mouse="-42" style="right:190px;bottom:120px"><div class="chip">RGPD natif</div></div>
+        <div class="float hide-sm" data-speed="0.85" data-mouse="80" style="right:70px;top:380px"><div class="chip ghost">BI temps réel</div></div>
+        <div class="float hide-sm" data-speed="0.6" data-mouse="56" style="left:44%;top:100px"><div class="chip ghost">Workflows</div></div>
+        <div class="hero-center">
+            <div class="hero-content" data-speed="-0.12" data-mouse="10">
+                <p class="label hero-label">Développeur web indépendant · Suisse &amp; France</p>
+                <h1>Vos applications métier, <span>sur mesure</span> et souveraines.</h1>
+                <p class="hero-desc">ERP, automatisation, intelligence artificielle — des solutions ouvertes et conformes RGPD qui restent entièrement sous votre contrôle.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">Demander une consultation</a>
+                    <a href="#services" class="btn-outline">Explorer ↓</a>
                 </div>
             </div>
         </div>
-        <div class="stats-bar">
-            <div class="stat">
-                <div class="stat-title">Sur mesure</div>
-                <div class="stat-sub">solutions dédiées</div>
-            </div>
-            <div class="stat">
-                <div class="stat-title">Souveraines</div>
-                <div class="stat-sub">vos données chez vous</div>
-            </div>
-            <div class="stat">
-                <div class="stat-title">Open source</div>
-                <div class="stat-sub">aucun verrou éditeur</div>
-            </div>
-            <div class="stat">
-                <div class="stat-title">RGPD</div>
-                <div class="stat-sub">conformité native</div>
-            </div>
+    </section>
+
+    <!-- Bandeau -->
+    <section class="band" aria-label="Nos engagements">
+        <div class="band-bg"></div>
+        <div class="marquee-wrap" aria-hidden="true">
+            <div class="marquee-row"><div class="marquee solid" data-hx="0.6"><span id="m1"></span></div></div>
+            <div class="marquee-row"><div class="marquee outline" data-hx="-0.6"><span id="m2"></span></div></div>
+        </div>
+        <div class="band-points">
+            <div class="band-point"><strong>Sur mesure</strong><span>Construit autour de vos processus, pas l'inverse.</span></div>
+            <div class="band-point"><strong>Souverain</strong><span>Vos données hébergées où vous le décidez.</span></div>
+            <div class="band-point"><strong>Open source</strong><span>Aucun verrou éditeur, aucune licence imposée.</span></div>
+            <div class="band-point"><strong>RGPD natif</strong><span>La conformité pensée dès la conception.</span></div>
         </div>
     </section>
 
     <!-- Services -->
-    <section id="services">
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-h2">Mes services</h2>
-                <span class="section-tag">Ce que je construis</span>
-            </div>
-            <div class="services-grid">
-                <div>
-                    <div class="service-num">01</div>
-                    <h3 class="service-title">ERP &amp; CRM sur mesure</h3>
-                    <p class="service-desc">Conception et intégration d'ERP et CRM personnalisés pour optimiser votre gestion et votre relation client.</p>
+    <section class="services" id="services" data-sec="services">
+        <div class="services-sticky">
+            <div class="services-track" id="services-track">
+                <div class="services-intro">
+                    <div class="label">Mes services</div>
+                    <h2>Six <em>expertises</em>.</h2>
+                    <p>Des outils construits autour de vos processus, pas l'inverse.</p>
+                    <span class="hint">Continuez à défiler →</span>
                 </div>
-                <div>
-                    <div class="service-num">02</div>
-                    <h3 class="service-title">Génération de documents</h3>
-                    <p class="service-desc">Automatisez la création de vos factures, rapports et contrats à partir de vos données métier.</p>
-                </div>
-                <div>
-                    <div class="service-num">03</div>
-                    <h3 class="service-title">Workflows &amp; automatisation</h3>
-                    <p class="service-desc">Des workflows intelligents qui automatisent vos processus métier et vous font gagner en efficacité.</p>
-                </div>
-                <div>
-                    <div class="service-num">04</div>
-                    <h3 class="service-title">Tableaux de bord &amp; BI</h3>
-                    <p class="service-desc">Business intelligence et tableaux de bord personnalisés pour piloter votre activité en temps réel.</p>
-                </div>
-                <div>
-                    <div class="service-num">05</div>
-                    <h3 class="service-title">IA &amp; maintenance prédictive</h3>
-                    <p class="service-desc">Intelligence artificielle pour la maintenance prédictive et l'optimisation de vos processus industriels.</p>
-                </div>
-                <div>
-                    <div class="service-num">06</div>
-                    <h3 class="service-title">Santé &amp; télémédecine</h3>
-                    <p class="service-desc">Collecte de données capteurs, questionnaires de santé et télémédecine, conformes RGPD.</p>
-                </div>
-            </div>
-            <div class="also-tags">
-                <span class="also-label">Aussi —</span>
-                <span class="tag">Planification de production</span>
-                <span class="tag">Applications IoT</span>
-                <span class="tag">Intégration capteurs</span>
-                <span class="tag">Migration cloud</span>
-                <span class="tag">API REST &amp; GraphQL</span>
-                <span class="tag">Modernisation IT</span>
+                <div class="card"><div class="num">01</div><div><h3>ERP &amp; CRM sur mesure</h3><p>Conception et intégration d'ERP et CRM personnalisés pour optimiser votre gestion et votre relation client.</p></div></div>
+                <div class="card"><div class="num">02</div><div><h3>Génération de documents</h3><p>Automatisez la création de vos factures, rapports et contrats à partir de vos données métier.</p></div></div>
+                <div class="card"><div class="num">03</div><div><h3>Workflows &amp; automatisation</h3><p>Des workflows intelligents qui automatisent vos processus métier et vous font gagner en efficacité.</p></div></div>
+                <div class="card"><div class="num">04</div><div><h3>Tableaux de bord &amp; BI</h3><p>Business intelligence et tableaux de bord personnalisés pour piloter votre activité en temps réel.</p></div></div>
+                <div class="card"><div class="num">05</div><div><h3>IA &amp; maintenance prédictive</h3><p>Intelligence artificielle pour la maintenance prédictive et l'optimisation de vos processus industriels.</p></div></div>
+                <div class="card accent"><div class="num">06</div><div><h3>Santé &amp; télémédecine</h3><p>Collecte de données capteurs, questionnaires de santé et télémédecine, conformes RGPD.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Values (dark) -->
-    <section id="valeurs">
-        <div class="values-dark">
-            <div class="values-dark-inner">
-                <p class="dark-label">Mes valeurs</p>
-                <h2 class="dark-h2">L'excellence technologique au service de votre indépendance.</h2>
-                <div class="values-grid">
-                    <div class="value-item">
-                        <h3 class="value-title">Souveraineté des données</h3>
-                        <p class="value-desc">Vos données vous appartiennent. Un contrôle total, hébergé selon vos exigences et conforme RGPD.</p>
-                    </div>
-                    <div class="value-item">
-                        <h3 class="value-title">Technologies open source</h3>
-                        <p class="value-desc">Indépendance vis-à-vis des éditeurs propriétaires : pérennité, flexibilité et transparence.</p>
-                    </div>
-                    <div class="value-item">
-                        <h3 class="value-title">Transparence totale</h3>
-                        <p class="value-desc">Une méthode agile qui vous implique à chaque étape, pour des résultats alignés sur vos attentes.</p>
-                    </div>
+    <div class="also-tags">
+        <span class="also-label">Aussi —</span>
+        <span class="tag">Planification de production</span>
+        <span class="tag">Applications IoT</span>
+        <span class="tag">Intégration capteurs</span>
+        <span class="tag">Migration cloud</span>
+        <span class="tag">API REST &amp; GraphQL</span>
+        <span class="tag">Modernisation IT</span>
+    </div>
+
+    <!-- Méthode -->
+    <section class="method" id="methode" data-sec="methode">
+        <div class="method-glow" data-speed="0.3"></div>
+        <div class="section-head">
+            <div class="label">Ma méthode</div>
+            <h2 class="reveal">Collaboratif, <span>itératif</span>, transparent.</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-line"><div class="timeline-fill" id="timeline-fill"></div></div>
+            <div class="step right reveal"><div class="n">ÉTAPE 01</div><h3>Communication continue</h3><p>Des échanges réguliers pour vous tenir informé et ajuster le cap si nécessaire.</p></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="step reveal"><div class="n">ÉTAPE 02</div><h3>Développement itératif</h3><p>Des versions régulières pour valider ensemble chaque fonctionnalité.</p></div>
+            <div class="step right reveal"><div class="n">ÉTAPE 03</div><h3>Qualité &amp; fiabilité</h3><p>Un code testé et documenté qui assure la pérennité de votre application.</p></div>
+            <div class="spacer"></div>
+        </div>
+    </section>
+
+    <!-- Valeurs -->
+    <section class="values" id="valeurs" data-sec="valeurs">
+        <div class="label">Mes valeurs</div>
+        <div class="value-row reveal"><span class="n">01</span><h3>Souveraineté des données</h3><p>Vos données vous appartiennent. Un contrôle total, hébergé selon vos exigences et conforme RGPD.</p></div>
+        <div class="value-row reveal"><span class="n">02</span><h3>Technologies open source</h3><p>Indépendance vis-à-vis des éditeurs propriétaires : pérennité, flexibilité et transparence.</p></div>
+        <div class="value-row reveal"><span class="n">03</span><h3>Transparence totale</h3><p>Une méthode agile qui vous implique à chaque étape, pour des résultats alignés sur vos attentes.</p></div>
+    </section>
+
+    <!-- Projets -->
+    <section class="projects" id="projets" data-sec="projets">
+        <div class="project reveal">
+            <div class="project-text">
+                <div class="label">Projets de référence</div>
+                <h2><em>modale.ch</em> — conseil fiscal transfrontalier</h2>
+                <p class="desc">Site professionnel développé pour un cabinet de conseil fiscal genevois spécialisé dans les questions franco-suisses : espace client sécurisé, présentation claire des services et tarification transparente, optimisé mobile.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">PHP</span>
                 </div>
+                <a href="https://modale.ch" target="_blank" rel="noopener noreferrer" class="project-link">Visiter le site ↗</a>
+            </div>
+            <div class="browser" data-rot="0.012" data-speed="0.08">
+                <div class="browser-bar"><span></span><span></span><span></span></div>
+                <div class="browser-view"><img src="images/modale-screenshot.png" alt="Screenshot modale.ch" loading="lazy"></div>
+            </div>
+        </div>
+
+        <div class="project reverse reveal">
+            <div class="project-text">
+                <h2><em>moncourtierfrontalier.com</em> — protection juridique franco-suisse</h2>
+                <p class="desc">Application web complète de souscription d'assurance protection juridique pour les travailleurs frontaliers franco-suisses : tunnel de souscription multi-étapes, génération de documents contractuels (propositions, mandats SEPA), signature électronique via YouSign, espace administrateur avec gestion des abonnements et des partenaires.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Laravel</span><span class="tech-tag">Vue.js 3</span><span class="tech-tag">Inertia.js</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">PHP</span>
+                </div>
+                <a href="https://pj.moncourtierfrontalier.com/presentation" target="_blank" rel="noopener noreferrer" class="project-link">Visiter le site ↗</a>
+            </div>
+            <div class="browser" data-rot="-0.012" data-speed="0.08">
+                <div class="browser-bar"><span></span><span></span><span></span></div>
+                <div class="browser-view"><img src="images/mcf-screenshot.png" alt="Screenshot moncourtierfrontalier.com" loading="lazy"></div>
+            </div>
+        </div>
+
+        <div class="project reveal">
+            <div class="project-text">
+                <h2><em>montagne-vacances.com</em> — plateforme de location de séjours montagne</h2>
+                <p class="desc">Site de réservation de séjours en résidences de montagne : moteur de recherche géospatial (PostGIS), CMS interne, gestion des disponibilités et des tarifs via intégrations hôtelières (DEdge), génération de vouchers, espace client avec suivi des réservations et devis, rendu SSR pour le référencement.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Laravel 13</span><span class="tech-tag">Livewire 4</span><span class="tech-tag">React</span><span class="tech-tag">Inertia.js SSR</span><span class="tech-tag">PostGIS</span><span class="tech-tag">Tailwind CSS</span>
+                </div>
+                <a href="https://www.montagne-vacances.com/" target="_blank" rel="noopener noreferrer" class="project-link">Visiter le site ↗</a>
+            </div>
+            <div class="browser" data-rot="0.012" data-speed="0.08">
+                <div class="browser-bar"><span></span><span></span><span></span></div>
+                <div class="browser-view"><img src="images/mv-screenshot.png" alt="Screenshot montagne-vacances.com" loading="lazy"></div>
             </div>
         </div>
     </section>
 
-    <!-- Method -->
-    <section id="methode">
-        <div class="section">
-            <p class="section-label">Ma méthode</p>
-            <h2 class="method-intro">Un développement collaboratif, itératif et transparent.</h2>
-            <div class="method-grid">
-                <div>
-                    <div class="method-num">01</div>
-                    <h3 class="method-title">Communication continue</h3>
-                    <p class="method-desc">Des échanges réguliers pour vous tenir informé et ajuster le cap si nécessaire.</p>
-                </div>
-                <div>
-                    <div class="method-num">02</div>
-                    <h3 class="method-title">Développement itératif</h3>
-                    <p class="method-desc">Des versions régulières pour valider ensemble chaque fonctionnalité.</p>
-                </div>
-                <div>
-                    <div class="method-num">03</div>
-                    <h3 class="method-title">Qualité &amp; fiabilité</h3>
-                    <p class="method-desc">Un code testé et documenté qui assure la pérennité de votre application.</p>
+    <!-- Contact -->
+    <section class="contact" id="contact" data-sec="contact">
+        <div class="contact-glow" data-speed="0.25"></div>
+        <div class="contact-grid">
+            <div class="contact-left">
+                <div class="label">Contact</div>
+                <h2 class="reveal">Construisons <span>ensemble</span> votre solution.</h2>
+                <p>Présentez-moi votre projet en quelques lignes : je vous réponds sous 24 h ouvrées avec une première lecture et les prochaines étapes.</p>
+                <div class="contact-info">
+                    <div class="contact-row"><span class="contact-key">Email</span><span class="contact-val"><a href="mailto:cedtaz@gmail.com">cedtaz@gmail.com</a></span></div>
+                    <div class="contact-row"><span class="contact-key">Disponibilité</span><span class="contact-val">Lun – Ven · 9h – 18h</span></div>
+                    <div class="contact-row"><span class="contact-key">LinkedIn</span><span class="contact-val"><a href="https://www.linkedin.com/in/cedric-aguettaz" target="_blank" rel="noopener noreferrer">in/cedric-aguettaz</a></span></div>
                 </div>
             </div>
+            <div class="form-card">
+                <form id="contact-form" action="https://formspree.io/f/xkogldnn" method="POST">
+                    <div class="row-2">
+                        <label class="field"><span>Nom complet *</span><input type="text" name="name" required placeholder="Jean Dupont"></label>
+                        <label class="field"><span>Entreprise *</span><input type="text" name="company" required placeholder="Votre société"></label>
+                    </div>
+                    <label class="field"><span>Email professionnel *</span><input type="email" name="email" required placeholder="jean@entreprise.ch"></label>
+                    <div>
+                        <span class="field-title" id="svc-title">Service recherché</span>
+                        <div class="chips" role="radiogroup" aria-labelledby="svc-title">
+                            <label><input type="radio" name="service" value="ERP / CRM" checked><span>ERP / CRM</span></label>
+                            <label><input type="radio" name="service" value="Workflows & automatisation"><span>Automatisation</span></label>
+                            <label><input type="radio" name="service" value="BI & tableaux de bord"><span>BI &amp; tableaux de bord</span></label>
+                            <label><input type="radio" name="service" value="IA & maintenance prédictive"><span>IA prédictive</span></label>
+                            <label><input type="radio" name="service" value="Santé & télémédecine"><span>Santé</span></label>
+                            <label><input type="radio" name="service" value="Autre"><span>Autre</span></label>
+                        </div>
+                    </div>
+                    <label class="field"><span>Votre projet *</span><textarea name="message" rows="4" required placeholder="Contexte, objectifs, délais…"></textarea></label>
+                    <label class="consent">
+                        <input type="checkbox" name="rgpd" required>
+                        <span>J'accepte que mes données soient utilisées pour traiter ma demande. <a href="politique-confidentialite.html">Politique de confidentialité</a></span>
+                    </label>
+                    <button type="submit" class="btn-submit" id="submit-btn"><span id="submit-label">Envoyer ma demande</span> <span class="arrow">→</span></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Lun – Ven · 9h – 18h · <a href="https://www.linkedin.com/in/cedric-aguettaz" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+            <span>© 2025 Cédric Aguettaz · <a href="#">Mentions légales</a> · <a href="#">RGPD</a> · <a href="politique-confidentialite.html">Confidentialité</a></span>
         </div>
     </section>
-
-    <!-- Projects -->
-    <section id="projets">
-        <div class="section">
-            <div class="project-grid">
-                <div>
-                    <p class="section-label">Projets de référence</p>
-                    <h2 class="project-title"><em>modale.ch</em> — conseil fiscal transfrontalier</h2>
-                    <p class="project-desc">Site professionnel développé pour un cabinet de conseil fiscal genevois spécialisé dans les questions franco-suisses : espace client sécurisé, présentation claire des services et tarification transparente, optimisé mobile.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">PHP</span>
-                    </div>
-                    <a href="https://modale.ch" target="_blank" rel="noopener noreferrer" class="project-link">Visiter le site ↗</a>
-                </div>
-                <div class="project-image">
-                    <img src="images/modale-screenshot.png" alt="Screenshot modale.ch">
-                </div>
-            </div>
-
-            <div class="project-grid" style="margin-top: 64px;">
-                <div>
-                    <h2 class="project-title"><em>moncourtierfrontalier.com</em> — protection juridique franco-suisse</h2>
-                    <p class="project-desc">Application web complète de souscription d'assurance protection juridique pour les travailleurs frontaliers franco-suisses : tunnel de souscription multi-étapes, génération de documents contractuels (propositions, mandats SEPA), signature électronique via YouSign, espace administrateur avec gestion des abonnements et des partenaires.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Laravel</span>
-                        <span class="tech-tag">Vue.js 3</span>
-                        <span class="tech-tag">Inertia.js</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">PHP</span>
-                    </div>
-                    <a href="https://pj.moncourtierfrontalier.com/presentation" target="_blank" rel="noopener noreferrer" class="project-link">Visiter le site ↗</a>
-                </div>
-                <div class="project-image">
-                    <img src="images/mcf-screenshot.png" alt="Screenshot moncourtierfrontalier.com">
-                </div>
-            </div>
-
-            <div class="project-grid" style="margin-top: 64px;">
-                <div>
-                    <h2 class="project-title"><em>montagne-vacances.com</em> — plateforme de location de séjours montagne</h2>
-                    <p class="project-desc">Site de réservation de séjours en résidences de montagne : moteur de recherche géospatial (PostGIS), CMS interne, gestion des disponibilités et des tarifs via intégrations hôtelières (DEdge), génération de vouchers, espace client avec suivi des réservations et devis, rendu SSR pour le référencement.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Laravel 13</span>
-                        <span class="tech-tag">Livewire 4</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Inertia.js SSR</span>
-                        <span class="tech-tag">PostGIS</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                    </div>
-                    <a href="https://www.montagne-vacances.com/" target="_blank" rel="noopener noreferrer" class="project-link">Visiter le site ↗</a>
-                </div>
-                <div class="project-image">
-                    <img src="images/mv-screenshot.png" alt="Screenshot montagne-vacances.com">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact (dark) -->
-    <section id="contact">
-        <div class="contact-dark">
-            <div class="contact-inner">
-                <div>
-                    <p class="dark-label">Contact</p>
-                    <h2 class="contact-h2">Construisons ensemble votre solution.</h2>
-                    <p class="contact-desc">Présentez-moi votre projet : je vous réponds sous 24 h ouvrées avec une première lecture et les prochaines étapes.</p>
-                    <div class="contact-info">
-                        <div class="contact-row">
-                            <span class="contact-key">Email</span>
-                            <span class="contact-val"><a href="mailto:cedtaz@gmail.com">cedtaz@gmail.com</a></span>
-                        </div>
-                        <div class="contact-row">
-                            <span class="contact-key">Disponibilité</span>
-                            <span class="contact-val">Lun – Ven · 9h – 18h</span>
-                        </div>
-                        <div class="contact-row">
-                            <span class="contact-key">LinkedIn</span>
-                            <span class="contact-val"><a href="https://www.linkedin.com/in/cedric-aguettaz" target="_blank" rel="noopener noreferrer">in/cedric-aguettaz</a></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form-wrap">
-                    <form id="contact-form" action="https://formspree.io/f/xkogldnn" method="POST" class="form-grid">
-                        <div>
-                            <label class="form-label" for="name">Nom complet *</label>
-                            <input class="form-input" type="text" id="name" name="name" required placeholder="Jean Dupont">
-                        </div>
-                        <div class="form-row-2">
-                            <div>
-                                <label class="form-label" for="company">Entreprise *</label>
-                                <input class="form-input" type="text" id="company" name="company" required placeholder="Votre entreprise">
-                            </div>
-                            <div>
-                                <label class="form-label" for="email">Email *</label>
-                                <input class="form-input" type="email" id="email" name="email" required placeholder="jean@entreprise.fr">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="form-label" for="service">Service recherché *</label>
-                            <select class="form-select" id="service" name="service" required>
-                                <option value="">Sélectionnez un service</option>
-                                <option value="erp-crm">ERP / CRM Sur Mesure</option>
-                                <option value="workflow">Workflows &amp; Automatisation</option>
-                                <option value="bi">Business Intelligence &amp; Tableaux de Bord</option>
-                                <option value="ia">Intégration IA &amp; Maintenance Prédictive</option>
-                                <option value="sante">Solutions Santé &amp; Télémédecine</option>
-                                <option value="autre">Autre projet</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label" for="message">Votre projet *</label>
-                            <textarea class="form-textarea" id="message" name="message" required placeholder="Parlez-moi de votre projet, vos objectifs, vos contraintes..."></textarea>
-                        </div>
-                        <div class="form-checkbox-row">
-                            <input type="checkbox" id="rgpd" name="rgpd" required>
-                            <label for="rgpd">J'accepte que mes données soient utilisées pour me recontacter. <a href="politique-confidentialite.html">Politique de confidentialité</a></label>
-                        </div>
-                        <button type="submit" class="btn-submit" id="submit-btn">Envoyer ma demande</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-inner">
-            <a href="#accueil" class="footer-logo">ceduweb</a>
-            <div class="footer-links">
-                <span>© 2025 Cédric Aguettaz</span>
-                <span>·</span>
-                <a href="#">Mentions légales</a>
-                <span>·</span>
-                <a href="#">RGPD</a>
-                <span>·</span>
-                <a href="politique-confidentialite.html">Confidentialité</a>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        const toggle = document.getElementById('nav-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        toggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+        const clamp = v => Math.max(0, Math.min(1, v));
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const form = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
-        form.addEventListener('submit', () => {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Envoi en cours…';
+        /* Bandeaux défilants */
+        const sep = '<span class="sep">{•}</span>';
+        const fill = words => (words.join(sep) + sep).repeat(2) ;
+        $('#m1').innerHTML = fill(['Sur mesure', 'Souverain', 'Open source', 'RGPD natif']);
+        $('#m2').innerHTML = fill(['ERP', 'Automatisation', 'IA', 'Tableaux de bord', 'IoT', 'Télémédecine']);
+
+        /* Menu mobile */
+        const toggle = $('#nav-toggle');
+        const mobileMenu = $('#mobile-menu');
+        toggle.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', open);
         });
+        $$('a', mobileMenu).forEach(a => a.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }));
 
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
+        /* Ancres : défilement fluide avec décalage pour la nav */
+        $$('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
-                const target = document.querySelector(a.getAttribute('href'));
+                const target = $(a.getAttribute('href'));
                 if (!target) return;
                 e.preventDefault();
-                window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior: 'smooth' });
+                const y = target.getBoundingClientRect().top + scrollY - (target.id === 'accueil' ? 0 : 70);
+                scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
             });
         });
+
+        /* Formulaire */
+        const form = $('#contact-form');
+        const submitBtn = $('#submit-btn');
+        form.addEventListener('submit', () => {
+            submitBtn.disabled = true;
+            $('#submit-label').textContent = 'Envoi en cours…';
+        });
+
+        /* Effets au défilement */
+        const absTop = el => el.getBoundingClientRect().top + scrollY;
+        const parallax = $$('[data-speed],[data-hx],[data-rot],[data-mouse]');
+        const reveals = $$('.reveal');
+        const secs = $$('[data-sec]');
+        const links = $$('#nav-links a');
+        const services = $('#services');
+        const track = $('#services-track');
+        const timeline = $('.timeline');
+        const progress = $('#progress');
+        let mx = 0, my = 0, raf = 0;
+
+        function update() {
+            raf = 0;
+            const st = scrollY, vh = innerHeight, mid = st + vh / 2;
+
+            if (!reduced) {
+                parallax.forEach(el => {
+                    const p = el.parentElement;
+                    const d = absTop(p) + p.offsetHeight / 2 - mid;
+                    const ds = el.dataset;
+                    const s = +ds.speed || 0, hx = +ds.hx || 0, rot = +ds.rot || 0, mo = +ds.mouse || 0;
+                    el.style.transform = `translate3d(${d * hx + mx * mo}px,${-d * s + my * mo}px,0) rotate(${d * rot}deg)`;
+                });
+            }
+
+            if (innerWidth > 1000) {
+                const p = clamp((st - absTop(services)) / (services.offsetHeight - vh));
+                track.style.transform = `translate3d(${-p * Math.max(0, track.scrollWidth - innerWidth)}px,0,0)`;
+            }
+
+            const tl = timeline.getBoundingClientRect();
+            $('#timeline-fill').style.transform = `scaleY(${clamp((vh * 0.6 - tl.top) / tl.height)})`;
+
+            progress.style.transform = `scaleX(${clamp(st / (document.documentElement.scrollHeight - vh))})`;
+
+            reveals.forEach(el => {
+                if (!el._shown && el.getBoundingClientRect().top < vh - 50) {
+                    el._shown = true;
+                    el.classList.add('shown');
+                }
+            });
+
+            let act = '';
+            secs.forEach(s => { if (absTop(s) <= st + vh * 0.4) act = s.dataset.sec; });
+            links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + act));
+        }
+
+        const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+        addEventListener('scroll', schedule, { passive: true });
+        addEventListener('resize', schedule);
+        addEventListener('mousemove', e => {
+            mx = e.clientX / innerWidth - 0.5;
+            my = e.clientY / innerHeight - 0.5;
+            if (scrollY < innerHeight) schedule();
+        });
+        addEventListener('load', schedule);
+        update();
     </script>
 </body>
 </html>
